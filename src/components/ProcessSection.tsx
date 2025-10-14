@@ -51,17 +51,18 @@ const ProcessSection = () => {
   useEffect(() => {
     if (!sectionRef.current || !titleRef.current) return;
 
-    // Fade out and scale up title as user scrolls
+    // Pin title and fade out as user scrolls
     gsap.to(titleRef.current, {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: 'top top',
-        end: 'top -30%',
+        end: 'top -50%',
         scrub: 1,
+        pin: titleRef.current,
+        pinSpacing: false,
       },
       opacity: 0,
       scale: 1.5,
-      y: -100,
     });
 
     // Animate each step on scroll
