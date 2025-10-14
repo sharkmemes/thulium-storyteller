@@ -3,11 +3,6 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Lightbulb, Palette, Code, TestTube, Rocket } from 'lucide-react';
-import AnimatedPath from './AnimatedPath';
-import InteractiveArrow from './InteractiveArrow';
-import GridBackground from './GridBackground';
-import DecorativeLine from './DecorativeLine';
-import ScrollReveal from './ScrollReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,17 +44,6 @@ const processSteps = [
   },
 ];
 
-const getSolutionContent = (index: number): string => {
-  const solutions = [
-    "We create detailed blueprints and user stories to ensure every feature aligns with your business goals, reducing rework and accelerating development.",
-    "Our designers create intuitive, brand-aligned interfaces that users love, while our architects build scalable systems that won't break under growth.",
-    "Using agile sprints, we deliver working software quickly, gathering feedback at every stage to ensure we're building exactly what you need.",
-    "Comprehensive testing catches issues before users do. We stress-test performance, security-audit code, and ensure seamless user experiences.",
-    "We handle deployment complexities, provide team training, and offer ongoing support to evolve your solution as your business grows.",
-  ];
-  return solutions[index] || "Custom solution tailored to your needs.";
-};
-
 const ProcessSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
@@ -95,22 +79,9 @@ const ProcessSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 bg-gradient-subtle relative">
-      <GridBackground variant="default" opacity={0.08} />
-      <AnimatedPath
-        startPoint={{ x: 10, y: 10 }}
-        endPoint={{ x: 90, y: 90 }}
-        reveals={[
-          { position: 0.2, title: 'Problem Discovery', content: 'We identify pain points through research and consultation' },
-          { position: 0.4, title: 'Solution Design', content: 'Crafting the perfect architecture for your needs' },
-          { position: 0.6, title: 'Development', content: 'Building with agile methodology and regular feedback' },
-          { position: 0.8, title: 'Launch & Support', content: 'Deploying and maintaining your solution' },
-        ]}
-        className="absolute inset-0 opacity-20"
-      />
-      <div className="container mx-auto px-6 relative z-10">
+    <section ref={sectionRef} className="py-32 bg-gradient-subtle">
+      <div className="container mx-auto px-6">
         <div ref={titleRef} className="text-center mb-20">
-          <DecorativeLine className="mx-auto mb-8" width="200px" />
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -135,15 +106,14 @@ const ProcessSection = () => {
           {processSteps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <ScrollReveal key={index} direction={index % 2 === 0 ? 'left' : 'right'} delay={0.2}>
-                <div
-                  className={`process-step-${index} flex flex-col md:flex-row items-center gap-12 ${
-                    index % 2 === 1 ? 'md:flex-row-reverse' : ''
-                  }`}
-                >
-                  <div className="flex-1">
-                    <DecorativeLine orientation="vertical" width="100px" className="mb-6" delay={0.3} />
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 mb-6 shadow-elegant">
+              <div
+                key={index}
+                className={`process-step-${index} flex flex-col md:flex-row items-center gap-12 ${
+                  index % 2 === 1 ? 'md:flex-row-reverse' : ''
+                }`}
+              >
+                <div className="flex-1">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 mb-6 shadow-elegant">
                     <Icon className="w-10 h-10 text-primary" />
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold mb-3">
@@ -155,27 +125,20 @@ const ProcessSection = () => {
                   <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                     {step.description}
                   </p>
-                  <div className="bg-card border border-border rounded-xl p-6 shadow-soft mb-6">
+                  <div className="bg-card border border-border rounded-xl p-6 shadow-soft">
                     <p className="text-sm font-semibold text-primary mb-2">What we do:</p>
                     <p className="text-foreground">{step.details}</p>
                   </div>
+                </div>
 
-                    <InteractiveArrow
-                      label="Click to see the solution"
-                      content={`Step ${index + 1} Solution: ${getSolutionContent(index)}`}
-                      direction="right"
-                    />
-                  </div>
-
-                  <div className="flex-1">
-                    <div className="relative w-full h-64 md:h-96 bg-gradient-primary rounded-2xl shadow-elegant overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <Icon className="w-32 h-32 text-white/20" />
-                      </div>
+                <div className="flex-1">
+                  <div className="relative w-full h-64 md:h-96 bg-gradient-primary rounded-2xl shadow-elegant overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Icon className="w-32 h-32 text-white/20" />
                     </div>
                   </div>
                 </div>
-              </ScrollReveal>
+              </div>
             );
           })}
         </div>

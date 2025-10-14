@@ -3,9 +3,6 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TrendingUp, TrendingDown, Zap, Users } from 'lucide-react';
-import GridBackground from './GridBackground';
-import DecorativeLine from './DecorativeLine';
-import ScrollReveal from './ScrollReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,20 +52,21 @@ const ImpactSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 bg-secondary overflow-hidden relative">
-      <GridBackground variant="lines" opacity={0.05} />
-      <div className="container mx-auto px-6 mb-12 relative z-10">
-        <ScrollReveal direction="fade">
-          <div className="text-center">
-            <DecorativeLine className="mx-auto mb-8" width="180px" />
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              The <span className="text-gradient">Impact</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-              Real Results. Real Success Stories.
-            </p>
-          </div>
-        </ScrollReveal>
+    <section ref={sectionRef} className="py-32 bg-secondary overflow-hidden">
+      <div className="container mx-auto px-6 mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            The <span className="text-gradient">Impact</span>
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            Real Results. Real Success Stories.
+          </p>
+        </motion.div>
       </div>
 
       <div ref={containerRef} className="relative h-[600px]">
@@ -91,18 +89,17 @@ const ImpactSection = () => {
               {impacts.map((impact, index) => {
                 const Icon = impact.icon;
                 return (
-                  <ScrollReveal key={index} direction="up" delay={index * 0.1}>
-                    <motion.div
-                      className={`metric-${index} bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-primary transition-smooth`}
-                      whileHover={{ scale: 1.05 }}
-                    >
+                  <motion.div
+                    key={index}
+                    className={`metric-${index} bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-primary transition-smooth`}
+                    whileHover={{ scale: 1.05 }}
+                  >
                     <Icon className={`w-12 h-12 mb-4 ${impact.color}`} />
                     <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                       {impact.value}
                     </div>
                     <div className="text-xl text-gray-300">{impact.label}</div>
                   </motion.div>
-                  </ScrollReveal>
                 );
               })}
             </div>

@@ -4,9 +4,6 @@ import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import InteractiveArrow from './InteractiveArrow';
-import GridBackground from './GridBackground';
-import DecorativeLine from './DecorativeLine';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,8 +64,6 @@ const Hero = () => {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero"
     >
-      <GridBackground variant="dots" opacity={0.15} />
-      
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
@@ -106,7 +101,6 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col items-center gap-8"
           >
             <Button
               size="lg"
@@ -114,21 +108,6 @@ const Hero = () => {
             >
               Start Your Project Journey
             </Button>
-
-            <div className="flex flex-col md:flex-row gap-8 items-start justify-center mt-8">
-              <InteractiveArrow
-                label="What challenges do you face?"
-                content="Inefficient processes, disconnected systems, outdated technology, or scaling issues—we identify the root cause and build solutions that eliminate these pain points."
-              />
-              <InteractiveArrow
-                label="How we solve it"
-                content="Through custom software development, AI integration, cloud architecture, and user-centric design—we transform complexity into simplicity."
-              />
-              <InteractiveArrow
-                label="Why choose us?"
-                content="We don't just write code. We partner with you to understand your vision, iterate rapidly, and deliver solutions that grow with your business."
-              />
-            </div>
           </motion.div>
         </div>
       </div>

@@ -1,14 +1,10 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, Calendar } from 'lucide-react';
-import GridBackground from './GridBackground';
-import DecorativeLine from './DecorativeLine';
-import ScrollReveal from './ScrollReveal';
 
 const CTASection = () => {
   return (
     <section className="py-32 bg-gradient-hero relative overflow-hidden">
-      <GridBackground variant="dots" opacity={0.12} />
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
@@ -16,13 +12,16 @@ const CTASection = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <ScrollReveal direction="fade">
-          <div className="max-w-5xl mx-auto text-center">
-            <DecorativeLine className="mx-auto mb-12" width="250px" />
-            <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Let's Build the{' '}
-              <span className="text-gradient">Next Possibility</span>
-            </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-5xl mx-auto text-center"
+        >
+          <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+            Let's Build the{' '}
+            <span className="text-gradient">Next Possibility</span>
+          </h2>
           
           <p className="text-xl md:text-3xl text-gray-200 mb-12 leading-relaxed">
             Every breakthrough starts with a conversation.
@@ -74,8 +73,7 @@ const CTASection = () => {
               <div className="h-12 w-32 bg-white/20 rounded backdrop-blur-sm" />
             </div>
           </motion.div>
-          </div>
-        </ScrollReveal>
+        </motion.div>
       </div>
     </section>
   );
