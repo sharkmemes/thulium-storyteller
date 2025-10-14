@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Lightbulb, Palette, Code, TestTube, Rocket } from 'lucide-react';
+import DeviceMockups from './DeviceMockups';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -135,11 +136,10 @@ const ProcessSection = () => {
                 </div>
 
                 <div className="flex-1">
-                  <div className="relative w-full h-64 md:h-96 bg-gradient-primary rounded-2xl shadow-elegant overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Icon className="w-32 h-32 text-white/20" />
-                    </div>
-                  </div>
+                  <DeviceMockups 
+                    type={index === 0 || index === 3 ? 'laptop' : index === 1 || index === 4 ? 'phone' : 'both'} 
+                    stepIndex={index} 
+                  />
                 </div>
               </div>
             );
