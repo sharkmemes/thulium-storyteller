@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import InteractiveArrow from './InteractiveArrow';
+import GridBackground from './GridBackground';
+import DecorativeLine from './DecorativeLine';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,6 +67,8 @@ const Hero = () => {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero"
     >
+      <GridBackground variant="dots" opacity={0.15} />
+      
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
