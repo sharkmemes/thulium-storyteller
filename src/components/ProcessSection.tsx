@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Lightbulb, Palette, Code, TestTube, Rocket } from 'lucide-react';
+import AnimatedPath from './AnimatedPath';
+import InteractiveArrow from './InteractiveArrow';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,6 +46,17 @@ const processSteps = [
   },
 ];
 
+const getSolutionContent = (index: number): string => {
+  const solutions = [
+    "We create detailed blueprints and user stories to ensure every feature aligns with your business goals, reducing rework and accelerating development.",
+    "Our designers create intuitive, brand-aligned interfaces that users love, while our architects build scalable systems that won't break under growth.",
+    "Using agile sprints, we deliver working software quickly, gathering feedback at every stage to ensure we're building exactly what you need.",
+    "Comprehensive testing catches issues before users do. We stress-test performance, security-audit code, and ensure seamless user experiences.",
+    "We handle deployment complexities, provide team training, and offer ongoing support to evolve your solution as your business grows.",
+  ];
+  return solutions[index] || "Custom solution tailored to your needs.";
+};
+
 const ProcessSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
@@ -79,8 +92,19 @@ const ProcessSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 bg-gradient-subtle">
-      <div className="container mx-auto px-6">
+    <section ref={sectionRef} className="py-32 bg-gradient-subtle relative">
+      <AnimatedPath
+        startPoint={{ x: 10, y: 10 }}
+        endPoint={{ x: 90, y: 90 }}
+        reveals={[
+          { position: 0.2, title: 'Problem Discovery', content: 'We identify pain points through research and consultation' },
+          { position: 0.4, title: 'Solution Design', content: 'Crafting the perfect architecture for your needs' },
+          { position: 0.6, title: 'Development', content: 'Building with agile methodology and regular feedback' },
+          { position: 0.8, title: 'Launch & Support', content: 'Deploying and maintaining your solution' },
+        ]}
+        className="absolute inset-0 opacity-20"
+      />
+      <div className="container mx-auto px-6 relative z-10">
         <div ref={titleRef} className="text-center mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -125,10 +149,16 @@ const ProcessSection = () => {
                   <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                     {step.description}
                   </p>
-                  <div className="bg-card border border-border rounded-xl p-6 shadow-soft">
+                  <div className="bg-card border border-border rounded-xl p-6 shadow-soft mb-6">
                     <p className="text-sm font-semibold text-primary mb-2">What we do:</p>
                     <p className="text-foreground">{step.details}</p>
                   </div>
+
+                  <InteractiveArrow
+                    label="Click to see the solution"
+                    content={`Step ${index + 1} Solution: ${getSolutionContent(index)}`}
+                    direction="right"
+                  />
                 </div>
 
                 <div className="flex-1">
