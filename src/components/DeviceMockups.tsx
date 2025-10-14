@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Monitor, Smartphone } from 'lucide-react';
+import { Monitor, Smartphone, Lightbulb, Palette, Code2, CheckCircle2, Rocket, Zap, Sparkles, FileCode, Database } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,6 +68,126 @@ const DeviceMockups = ({ type, stepIndex }: DeviceMockupsProps) => {
     }
   }, [type]);
 
+  const getStepAnimation = () => {
+    switch (stepIndex) {
+      case 0: // Discovery & Blueprint
+        return (
+          <div className="absolute inset-0 flex items-center justify-center p-4">
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Lightbulb className="w-12 h-12 md:w-20 md:h-20 text-yellow-300" />
+            </motion.div>
+            <motion.div
+              className="absolute"
+              animate={{ opacity: [0.3, 0.7, 0.3] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <Sparkles className="w-8 h-8 text-yellow-200" />
+            </motion.div>
+          </div>
+        );
+      case 1: // Architect & Design
+        return (
+          <div className="absolute inset-0 flex items-center justify-center gap-2 p-4">
+            <motion.div
+              animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Palette className="w-10 h-10 md:w-16 md:h-16 text-purple-300" />
+            </motion.div>
+            <motion.div
+              className="flex gap-1"
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-red-400" />
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-blue-400" />
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-green-400" />
+            </motion.div>
+          </div>
+        );
+      case 2: // Agile Development
+        return (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4">
+            <motion.div
+              animate={{ x: [-20, 20, -20] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+            >
+              <Zap className="w-12 h-12 md:w-20 md:h-20 text-cyan-300" />
+            </motion.div>
+            <div className="flex gap-1">
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  className="w-1 h-8 bg-cyan-400 rounded"
+                  animate={{ scaleY: [0.5, 1, 0.5] }}
+                  transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.2 }}
+                />
+              ))}
+            </div>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            >
+              <Code2 className="w-8 h-8 text-cyan-200" />
+            </motion.div>
+          </div>
+        );
+      case 3: // Test & Refine
+        return (
+          <div className="absolute inset-0 flex items-center justify-center p-4">
+            <motion.div
+              animate={{ scale: [0.8, 1.2, 0.8] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <CheckCircle2 className="w-12 h-12 md:w-20 md:h-20 text-green-300" />
+            </motion.div>
+            {[0, 1, 2, 3].map((i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-green-400 rounded-full"
+                animate={{
+                  x: [0, Math.cos(i * Math.PI / 2) * 40],
+                  y: [0, Math.sin(i * Math.PI / 2) * 40],
+                  opacity: [1, 0],
+                }}
+                transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.3 }}
+              />
+            ))}
+          </div>
+        );
+      case 4: // Launch & Grow
+        return (
+          <div className="absolute inset-0 flex items-center justify-center p-4">
+            <motion.div
+              animate={{ y: [0, -30, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Rocket className="w-12 h-12 md:w-20 md:h-20 text-orange-300" />
+            </motion.div>
+            <motion.div
+              className="absolute bottom-8"
+              animate={{ scale: [0, 1.5], opacity: [0.8, 0] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            >
+              <div className="w-8 h-8 bg-orange-400/50 rounded-full" />
+            </motion.div>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              className="absolute top-4 right-4"
+            >
+              <Sparkles className="w-6 h-6 text-yellow-300" />
+            </motion.div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div ref={containerRef} className="relative w-full h-64 md:h-96 flex items-center justify-center" style={{ perspective: '1500px' }}>
       {(type === 'laptop' || type === 'both') && (
@@ -77,12 +198,10 @@ const DeviceMockups = ({ type, stepIndex }: DeviceMockupsProps) => {
         >
           {/* Laptop Screen */}
           <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-t-2xl border-8 border-slate-700 shadow-2xl w-72 h-48 md:w-96 md:h-64">
-            <div className="absolute inset-0 bg-gradient-primary rounded-xl m-2 overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Monitor className="w-16 h-16 md:w-24 md:h-24 text-white/20" />
-              </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl m-2 overflow-hidden">
+              {getStepAnimation()}
               {/* Screen reflection effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
             </div>
             {/* Webcam */}
             <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-slate-600" />
@@ -106,12 +225,10 @@ const DeviceMockups = ({ type, stepIndex }: DeviceMockupsProps) => {
         >
           {/* Phone Frame */}
           <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-[2.5rem] border-8 border-slate-700 shadow-2xl w-36 h-72 md:w-44 md:h-80">
-            <div className="absolute inset-0 bg-gradient-primary rounded-[1.8rem] m-1 overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Smartphone className="w-12 h-12 md:w-16 md:h-16 text-white/20" />
-              </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-[1.8rem] m-1 overflow-hidden">
+              {getStepAnimation()}
               {/* Screen reflection effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
             </div>
             
             {/* Notch */}
