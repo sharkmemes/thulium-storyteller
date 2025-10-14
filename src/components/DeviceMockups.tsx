@@ -189,7 +189,7 @@ const DeviceMockups = ({ type, stepIndex }: DeviceMockupsProps) => {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full h-64 md:h-96 flex items-center justify-center" style={{ perspective: '1500px' }}>
+    <div ref={containerRef} className="relative w-full h-48 sm:h-56 md:h-80 lg:h-96 flex items-center justify-center" style={{ perspective: '1500px' }}>
       {(type === 'laptop' || type === 'both') && (
         <div
           ref={laptopRef}
@@ -197,7 +197,7 @@ const DeviceMockups = ({ type, stepIndex }: DeviceMockupsProps) => {
           style={{ transformStyle: 'preserve-3d' }}
         >
           {/* Laptop Screen */}
-          <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-t-2xl border-8 border-slate-700 shadow-2xl w-72 h-48 md:w-96 md:h-64">
+          <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-t-xl sm:rounded-t-2xl border-4 sm:border-6 md:border-8 border-slate-700 shadow-2xl w-48 h-32 sm:w-64 sm:h-40 md:w-80 md:h-52 lg:w-96 lg:h-64">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl m-2 overflow-hidden">
               {getStepAnimation()}
               {/* Screen reflection effect */}
@@ -209,10 +209,10 @@ const DeviceMockups = ({ type, stepIndex }: DeviceMockupsProps) => {
           
           {/* Laptop Base */}
           <div 
-            className="relative bg-slate-700 h-3 rounded-b-xl shadow-lg w-80 md:w-[28rem]"
+            className="relative bg-slate-700 h-2 sm:h-2.5 md:h-3 rounded-b-xl shadow-lg w-52 sm:w-72 md:w-[22rem] lg:w-[28rem]"
             style={{ transform: 'translateX(-8%) rotateX(75deg) translateZ(-10px)' }}
           >
-            <div className="absolute inset-x-0 top-0 h-1 bg-slate-600 rounded-t-sm" />
+            <div className="absolute inset-x-0 top-0 h-0.5 sm:h-1 bg-slate-600 rounded-t-sm" />
           </div>
         </div>
       )}
@@ -220,11 +220,11 @@ const DeviceMockups = ({ type, stepIndex }: DeviceMockupsProps) => {
       {(type === 'phone' || type === 'both') && (
         <div
           ref={phoneRef}
-          className={`relative ${type === 'both' ? 'ml-8 md:ml-12' : ''}`}
+          className={`relative ${type === 'both' ? 'ml-4 sm:ml-6 md:ml-8 lg:ml-12' : ''}`}
           style={{ transformStyle: 'preserve-3d' }}
         >
           {/* Phone Frame */}
-          <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-[2.5rem] border-8 border-slate-700 shadow-2xl w-36 h-72 md:w-44 md:h-80">
+          <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] border-4 sm:border-6 md:border-8 border-slate-700 shadow-2xl w-24 h-48 sm:w-32 sm:h-64 md:w-36 md:h-72 lg:w-44 lg:h-80">
             <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-[1.8rem] m-1 overflow-hidden">
               {getStepAnimation()}
               {/* Screen reflection effect */}
@@ -232,12 +232,12 @@ const DeviceMockups = ({ type, stepIndex }: DeviceMockupsProps) => {
             </div>
             
             {/* Notch */}
-            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-16 h-5 bg-slate-900 rounded-b-2xl" />
+            <div className="absolute top-0.5 sm:top-1 left-1/2 -translate-x-1/2 w-10 h-3 sm:w-12 sm:h-4 md:w-16 md:h-5 bg-slate-900 rounded-b-xl sm:rounded-b-2xl" />
             
             {/* Side buttons */}
-            <div className="absolute right-[-8px] top-24 w-1 h-12 bg-slate-600 rounded-l-sm" />
-            <div className="absolute left-[-8px] top-20 w-1 h-6 bg-slate-600 rounded-r-sm" />
-            <div className="absolute left-[-8px] top-32 w-1 h-8 bg-slate-600 rounded-r-sm" />
+            <div className="absolute right-[-6px] sm:right-[-8px] top-16 sm:top-20 md:top-24 w-0.5 sm:w-1 h-8 sm:h-10 md:h-12 bg-slate-600 rounded-l-sm" />
+            <div className="absolute left-[-6px] sm:left-[-8px] top-14 sm:top-16 md:top-20 w-0.5 sm:w-1 h-4 sm:h-5 md:h-6 bg-slate-600 rounded-r-sm" />
+            <div className="absolute left-[-6px] sm:left-[-8px] top-22 sm:top-26 md:top-32 w-0.5 sm:w-1 h-6 sm:h-7 md:h-8 bg-slate-600 rounded-r-sm" />
           </div>
         </div>
       )}

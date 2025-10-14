@@ -25,24 +25,24 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-32 bg-background">
-      <div className="container mx-auto px-6">
+    <section className="py-16 sm:py-24 md:py-32 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 px-4">
             Our Services: The Tools for Your{' '}
             <span className="text-gradient">Transformation</span>
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto px-4">
             Custom Solutions for Every Digital Frontier
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -56,14 +56,14 @@ const ServicesSection = () => {
                 className="transition-smooth"
               >
                 <Card className="h-full border-2 hover:border-primary hover:shadow-glow transition-smooth">
-                  <CardContent className="p-8">
+                  <CardContent className="p-4 sm:p-6 md:p-8">
                     <div
-                      className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${service.gradient} mb-6 shadow-elegant`}
+                      className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${service.gradient} mb-4 sm:mb-6 shadow-elegant`}
                     >
-                      <Icon className="w-8 h-8 text-white" />
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4">{service.title}</h3>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                       {service.description}
                     </p>
                   </CardContent>

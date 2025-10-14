@@ -83,14 +83,14 @@ const ProcessSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 bg-gradient-subtle">
-      <div className="container mx-auto px-6">
-        <div ref={titleRef} className="text-center mb-20">
+    <section ref={sectionRef} className="py-16 sm:py-24 md:py-32 bg-gradient-subtle">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div ref={titleRef} className="text-center mb-12 sm:mb-16 md:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 px-4"
           >
             The Process: Your Path to a{' '}
             <span className="text-gradient">New Possibility</span>
@@ -100,42 +100,42 @@ const ProcessSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto px-4"
           >
             We Don't Just Deliver Code, We Deliver Confidence.
           </motion.p>
         </div>
 
-        <div className="space-y-32 max-w-6xl mx-auto">
+        <div className="space-y-16 sm:space-y-24 md:space-y-32 max-w-6xl mx-auto">
           {processSteps.map((step, index) => {
             const Icon = step.icon;
             return (
               <div
                 key={index}
-                className={`process-step-${index} flex flex-col md:flex-row items-center gap-12 ${
+                className={`process-step-${index} flex flex-col md:flex-row items-center gap-8 md:gap-12 ${
                   index % 2 === 1 ? 'md:flex-row-reverse' : ''
                 }`}
               >
-                <div className="flex-1">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 mb-6 shadow-elegant">
-                    <Icon className="w-10 h-10 text-primary" />
+                <div className="flex-1 w-full">
+                  <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl bg-primary/10 mb-4 sm:mb-6 shadow-elegant">
+                    <Icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-primary" />
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-3">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3">
                     Step {index + 1}: {step.title}
                   </h3>
-                  <h4 className="text-xl md:text-2xl text-primary mb-4 font-semibold">
+                  <h4 className="text-lg sm:text-xl md:text-2xl text-primary mb-3 sm:mb-4 font-semibold">
                     {step.subtitle}
                   </h4>
-                  <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
                     {step.description}
                   </p>
-                  <div className="bg-card border border-border rounded-xl p-6 shadow-soft">
-                    <p className="text-sm font-semibold text-primary mb-2">What we do:</p>
-                    <p className="text-foreground">{step.details}</p>
+                  <div className="bg-card border border-border rounded-xl p-4 sm:p-6 shadow-soft">
+                    <p className="text-xs sm:text-sm font-semibold text-primary mb-2">What we do:</p>
+                    <p className="text-xs sm:text-sm md:text-base text-foreground">{step.details}</p>
                   </div>
                 </div>
 
-                <div className="flex-1">
+                <div className="flex-1 w-full">
                   <DeviceMockups 
                     type={index === 0 || index === 3 ? 'laptop' : index === 1 || index === 4 ? 'phone' : 'both'} 
                     stepIndex={index} 
